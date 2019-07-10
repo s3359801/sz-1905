@@ -23,20 +23,22 @@
             <button @click="handleSearch()">搜索</button>
 
         </div>
+        <BScroll>
         <div class="main">
             <Loading v-if="flag"/>
-            <router-link class="shop"
+            <v-touch class="shop"
             v-for="(item,index) in cinemaList"
             :key="index"
-            :to='{name:"movieChoose",params:{id:item.id}}'
+            @tap="handleDetail(item.id)"
             tag="li"
             >
                 <h3>{{item.name}}</h3>
                 <p class="address">{{item.address}}</p>
                 <span>{{item.price}}</span>
 
-            </router-link> 
+            </v-touch> 
         </div>
+        </BScroll>
     </div>
 </template>
 
@@ -60,9 +62,7 @@ export default {
         }else{
             this.flag= true;
         }
-        console.log(data);
         this.cinemaList = data.cinemaList.list;
-        console.log(this.cinemaList);
         
       },
 
@@ -80,11 +80,19 @@ export default {
         handleBack(){
             this.$router.go(-1)
         },
+        handleDetail(id){
+            this.$router.push({name:"movieChoose",params:{id}})
+        }
     }
 }
 </script>
 
 <style scoped>
+    .movieTicket {
+        width:100%;
+        height:100%;
+        overflow: auto;
+    }
     .citys{
         position: absolute;
         right:0;
@@ -105,6 +113,7 @@ export default {
         left:0;
         width: 100%;
         z-index: 10;
+        background: #fff;
     }
     .top .search {
         width: 75%;
@@ -132,14 +141,10 @@ export default {
         margin-top:.2rem;
     }
     .main{
-        position: absolute;
-        top:1.9rem;
-        left:0;
-        bottom: 0;
         width:100%;
         padding:0 .3rem;
-        overflow-x: hidden;
-        overflow-y: scroll;
+        padding-top:2rem;
+        overflow: auto;
     }
     .main .shop{
         width:100%;
@@ -157,7 +162,7 @@ export default {
         color:#999;
     }
     .main .shop .address{
-        max-width: 320px;
+        max-width: 5rem;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;

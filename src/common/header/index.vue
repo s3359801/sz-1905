@@ -16,9 +16,13 @@
            
     </div>
    <Banner/>
-    <div id="main">
+   
+    <div id="main" ref="movieBody">
+      
       <component :is="mainIndex"></component>
+      
     </div>
+    
     <keep-alive>
              <router-view></router-view>
         </keep-alive>
@@ -30,6 +34,7 @@ import HotMovie from "components/hotmovie/index.vue";
 import Upcoming from "components/upcoming/index.vue";
 import Banner from "components/banner/index.vue"
 import {mapActions,mapState, mapMutations} from "vuex";
+
 export default {
   data() {
     return {
@@ -63,7 +68,8 @@ export default {
           break;
       }
     }
-  }
+  },
+  
 };
 </script>
 

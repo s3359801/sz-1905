@@ -1,11 +1,13 @@
 <template>
-    <div>
+    <BScroll>
+    <div class="movie_body">
         <Loading v-if="flag"/>
-        <router-link class="movie" 
+        <v-touch class="movie" 
         v-for="(item,index) in movieList" 
         :key="index"
         tag="li"
-        :to='{name:"movieContent",params:{id:item.id}}'
+        @tap="handleDetail(item.id)"
+        
         >
            <div class="movielist"> 
                 <img :src="item.moviePoster">
@@ -15,18 +17,21 @@
                 <p class="actor">主演：{{item.actor}}</p>  
                 <div class="pay">
                 <router-link tag="button"
-                :to='{name:"movieTicket",params:{id:item.id}}'>购票</router-link>
+                :to='{name:"movieTicket",params:{id:item.id}}'
+                >购票</router-link>
             </div>
             </div>  
             </div>
-        </router-link>
+        </v-touch>
          
     </div>
+    </BScroll>
 </template>
 
 <script>
 import {getMovieNow} from "api/movie";
 import {mapActions,mapState, mapMutations} from "vuex";
+
 export default {
   
      async created(){
@@ -47,12 +52,18 @@ export default {
               flag:true,
           }
       },
+     
       computed:{
           ...mapState({
             city:state=>state.city.iptVal,
             id:state=>state.city.id
         })
           
+      },
+      methods:{
+            handleDetail(id){
+                this.$router.push({name:"movieContent",params:{id}})
+            }
       }
     
    

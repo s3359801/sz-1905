@@ -22,7 +22,7 @@
         </li>
       </ul>
     </div>
-    <div class="main" ref="domTop">   
+    <div class="main" ref="domTop"> 
         <div class="citySearch" v-for="(item,index) in AList" :key="index">
           <div class="cs_top">
             <p>{{item.group_id}}</p>

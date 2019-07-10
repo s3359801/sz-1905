@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="cinema">
         <InHeader title="影院"/>
         <MovieBody/>
     </div>
@@ -17,5 +17,9 @@ export default {
 </script>
 
 <style>
-    
+    .cinema {
+        width:100%;
+        height:100%;
+        
+    }
 </style>

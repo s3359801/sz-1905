@@ -1,11 +1,13 @@
 <template>
+    <BScroll>
       <div>
           <Loading v-if="flag"/>
-        <router-link class="movie" 
+        <v-touch class="movie" 
         v-for="(item,index) in movieList" 
         :key="index"
         tag="li"
-        :to='{name:"movieComing",params:{id:item.id}}'
+        @tap="handleDetail(item.id)"
+        
         >
            <div class="movielist"> 
                 <img :src="item.moviePoster">
@@ -17,8 +19,9 @@
                 
             </div>  
             </div>
-        </router-link>
+        </v-touch>
     </div>
+    </BScroll>
 </template>
 
 <script>
@@ -39,6 +42,11 @@ export default {
           return{
               movieList:[],
               flag:true
+          }
+      },
+      methods:{
+          handleDetail(id){
+              this.$router.push({name:"movieComing",params:{id}})
           }
       }
     
