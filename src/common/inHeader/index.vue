@@ -2,6 +2,7 @@
     <div id="inheader">
         <slot name="header" :icon="icon" :city="city" :icons="icons" :cityicon="cityicon"></slot>
         <h2>{{title}}</h2>
+        <!-- <slot></slot> -->
     </div>
 </template>
 
