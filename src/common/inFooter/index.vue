@@ -24,7 +24,7 @@ export default {
     #footer .choose{
         width:3.1rem;
         height:100%;
-        background: #c94c23;
+        background: #ccc;
         text-align: center;
         color:#fff;
         float: right;

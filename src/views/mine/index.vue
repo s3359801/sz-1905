@@ -5,8 +5,12 @@
     </div>
 </template>
 <script>
+import InHeader from "@/common/inHeader"
 export default {
-    name:"mine"
+    name:"mine",
+    components:{
+        InHeader
+    }
 }
 </script>
 

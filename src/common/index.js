@@ -1,5 +1,16 @@
 import Vue from "vue";
-import InHeader from "./inHeader"
-Vue.component("InHeader",InHeader)
+
+import HeaderCom from "./header"
+
+import Loading from "./loading"
+
+import BScroll from "./BScroll"
+
+
+Vue.component("HeaderCom",HeaderCom)
+
+Vue.component("Loading",Loading)
+
+Vue.component("BScroll",BScroll)
 
 //全局注册
