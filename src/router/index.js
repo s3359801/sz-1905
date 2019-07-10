@@ -11,11 +11,11 @@ import movieChoose from "./movieChoose"
 import movieComing from "./movieComing"
 import citys from "./citys"
 
-export default new VueRouter({
+const router = new VueRouter({
   routes: [
     {
-      path:"/",
-      redirect:"/movie"
+      path: "/",
+      redirect: "/movie"
     },
     movie,
     cinema,
@@ -25,6 +25,8 @@ export default new VueRouter({
     movieChoose,
     movieComing,
     citys
-    
+
   ]
 })
+
+export default router
