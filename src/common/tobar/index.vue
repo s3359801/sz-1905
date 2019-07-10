@@ -46,10 +46,12 @@ export default {
     #footer {
         width:100%;
         height:1rem;
-        border-top:1px solid #C94C23;
+        border-top:.02rem solid #C94C23;
         position: fixed;
         bottom: 0;
         left:0;
+        z-index: 10;
+        background: #fff;
 
     }
     #footer>ul {

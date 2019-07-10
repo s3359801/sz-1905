@@ -4,8 +4,9 @@ module.exports = {
     devServer:{
         open:true,
         proxy:{
-            "/api":{
-                target:"http://39.97.33.178",
+            "/s":{
+                ws:false,
+                target:"http://m.txpc.cn",
                 changOrigin:true
             }
         }

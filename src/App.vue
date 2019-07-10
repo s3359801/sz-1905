@@ -1,7 +1,9 @@
 <template>
   <div id="app">
+    <keep-alive>
     <router-view></router-view>
-    <Tobar/>
+    </keep-alive>
+    <Tobar v-if="$route.meta.flag"/>
   </div>
 </template>
 
@@ -16,5 +18,7 @@ export default {
 </script>
 
 <style>
-
+    #app{
+      height:100%;
+    }
 </style>

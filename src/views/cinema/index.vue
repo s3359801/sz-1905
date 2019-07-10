@@ -1,15 +1,25 @@
 <template>
-    <div>
+    <div class="cinema">
         <InHeader title="影院"/>
-        <h2>cinema</h2>
+        <MovieBody/>
     </div>
 </template>
 <script>
+import InHeader from "@/common/inHeader"
+import MovieBody from "@/components/movieBody"
 export default {
-    name:"cinema"
+    name:"cinema",
+    components:{
+        InHeader,
+        MovieBody
+    }
 }
 </script>
 
 <style>
-    
+    .cinema {
+        width:100%;
+        height:100%;
+        
+    }
 </style>
