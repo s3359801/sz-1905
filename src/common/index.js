@@ -1,5 +1,11 @@
 import Vue from "vue";
-import InHeader from "./inHeader"
-Vue.component("InHeader",InHeader)
+
+import HeaderCom from "./header"
+
+import Loading from "./loading"
+
+Vue.component("HeaderCom",HeaderCom)
+
+Vue.component("Loading",Loading)
 
 //全局注册

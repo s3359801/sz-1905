@@ -8,13 +8,19 @@
   },
   "dependencies": {
     "core-js": "^2.6.5",
+    "swiper": "^4.5.0",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.5.0",
+    "@babel/preset-env": "^7.5.2",
+    "@babel/preset-react": "^7.0.0",
     "@vue/cli-plugin-babel": "^3.9.0",
     "@vue/cli-service": "^3.9.0",
+    "babel-loader": "^8.0.6",
+    "swiper": "^4.5.0",
     "vue-template-compiler": "^2.6.10"
   }
 }
