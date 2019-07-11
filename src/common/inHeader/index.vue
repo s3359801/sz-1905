@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import {mapActions,mapState, mapMutations} from "vuex";
 export default {
     props:{
         title:{
@@ -13,11 +14,15 @@ export default {
             default:"影片详情"
         }
     },
+      computed:{
+        ...mapState({
+            city:state=>state.city.iptVal
+        })
+    },
     data(){
         return {
             icon:"影片",
             icons:"&#xe610;",
-            city:"上海市",
             cityicon:"&#xe674;"
         }
     }
@@ -36,6 +41,7 @@ export default {
         position: fixed;
         left: 0;
         top: 0;
+        z-index: 10;
     }
     #inheader>p{
         position: absolute;

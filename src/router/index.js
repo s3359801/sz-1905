@@ -5,6 +5,11 @@ Vue.use(VueRouter)
 import movie from "./movie";
 import cinema from "./cinema"
 import mine from "./mine";
+import movieContent from "./moiveContent"
+import movieTicket from "./movieTicket"
+import movieChoose from "./movieChoose"
+import movieComing from "./movieComing"
+import citys from "./citys"
 
 export default new VueRouter({
   routes: [
@@ -15,5 +20,11 @@ export default new VueRouter({
     movie,
     cinema,
     mine,
+    movieTicket,
+    movieContent,
+    movieChoose,
+    movieComing,
+    citys
+    
   ]
 })

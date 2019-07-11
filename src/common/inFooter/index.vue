@@ -1,29 +1,19 @@
 <template>
-    <div id="footerCom">
+    <div id="footer">
         <div class="choose">
-            <v-touch
-            tag="span"
-            @tap="handleChoose(val)"
-            >选座购票</v-touch>
+            <span>选座购票</span>
         </div>
     </div> 
 </template>
 
 <script>
 export default {
-    name:"footerCom",
-    props:["val"],
-    methods:{
-         handleChoose(id){
-            this.$router.push({name:"movieTicket",params:{id}})
-        },
-    }
-   
+
 }
 </script>
 
 <style scoped>
-    #footerCom {
+    #footer {
         width:100%;
         height:1rem;
         border-top:.02rem solid #C94C23;
@@ -31,10 +21,10 @@ export default {
         bottom: 0;
         left:0;
     }
-    #footerCom .choose{
+    #footer .choose{
         width:3.1rem;
         height:100%;
-        background: #c94c23;
+        background: #ccc;
         text-align: center;
         color:#fff;
         float: right;
