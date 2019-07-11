@@ -29,8 +29,12 @@
 </template>
 
 <script>
+import InHeader from "common/inHeader";
 export default {
   name: "register",
+  components: {
+    InHeader
+  },
   data(){
     return {
       iphoneVal: '',

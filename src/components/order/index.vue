@@ -20,9 +20,12 @@
 </template>
 
 <script>
-
+import InHeader from "common/inHeader";
 export default {
-  name: "order"
+  name: "order",
+  components: {
+    InHeader
+  },
 }
 </script>
 

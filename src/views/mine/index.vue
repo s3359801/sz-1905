@@ -15,50 +15,54 @@
     </div>
 </template>
 <script>
-    export default {
-        name: "mine",
-        data(){
+import InHeader from "common/inHeader";
+export default {
+  name: "mine",
+  components: {
+    InHeader
+  },
+  data() {
     return {
-      m_list:[
+      m_list: [
         {
-          icon:'&#xe691',
-          name:'我的订单',
-          right:'&#xe611',
-          path:'/order'
+          icon: "&#xe691",
+          name: "我的订单",
+          right: "&#xe611",
+          path: "/order"
         },
         {
-          icon:'&#xe60c',
-          name:'我的兑换卷',
-          right:'&#xe611',
-          path:'/ticket'
+          icon: "&#xe60c",
+          name: "我的兑换卷",
+          right: "&#xe611",
+          path: "/ticket"
         },
         {
-          icon:'&#xe67a;',
-          name:'更改密码',
-          right:'&#xe611',
-          path:'/changePwd'
+          icon: "&#xe67a;",
+          name: "更改密码",
+          right: "&#xe611",
+          path: "/changePwd"
         },
         {
-          icon:'&#xe6a0',
-          name:'退出登录',
-          right:'&#xe611',
-          path:'exit()'
+          icon: "&#xe6a0",
+          name: "退出登录",
+          right: "&#xe611",
+          path: "exit()"
         }
       ],
-      tel:'&#xe848'
-    }
+      tel: "&#xe848"
+    };
   },
   methods: {
-    exit(){
-      window.localStorage.clear()
-      confirm('退出登录成功')
+    exit() {
+      window.localStorage.clear();
+      confirm("退出登录成功");
     }
   }
 };
 </script>
 
 <style>
-#mine{
+#mine {
   /* display: flex; */
   /* flex: 1; */
   padding-top: 1.08rem;
@@ -67,10 +71,10 @@
   height: 100%;
   /* overflow: hidden; */
 }
-#mine>ul{
-  padding-top: .8rem;
+#mine > ul {
+  padding-top: 0.8rem;
 }
-#mine>ul>li{
+#mine > ul > li {
   height: 1.2rem;
   background: #fff;
   border-bottom: 0.01rem solid #eee;
@@ -80,7 +84,7 @@
   font-size: 0.32rem;
   color: #666;
 }
-#mine>ul>li>.iconfont{
+#mine > ul > li > .iconfont {
   width: 16.7%;
   padding: 0 0.3rem 0;
   box-sizing: border-box;
@@ -88,17 +92,17 @@
   font-size: 0.32rem;
   color: #666;
 }
-#mine>ul>li>.right{
+#mine > ul > li > .right {
   text-align: left;
 }
-#mine>ul>li>.mine-text{
+#mine > ul > li > .mine-text {
   width: 66.7%;
   padding: 0 0.3rem 0;
   box-sizing: border-box;
   font-size: 0.32rem;
   color: #666;
 }
-.fix-box{
+.fix-box {
   position: fixed;
   color: green;
   width: 100%;
@@ -106,7 +110,7 @@
   bottom: 1.2rem;
   font-size: 0.32rem;
 }
-.fix-box>a{
-  color:  green;
+.fix-box > a {
+  color: green;
 }
 </style>
