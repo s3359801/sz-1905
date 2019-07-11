@@ -42,7 +42,7 @@
         </div>
       </div>
     
-    <Footer />
+    <Footer :val="id"/>
     </div>
 </template>
     

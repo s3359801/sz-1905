@@ -17,8 +17,7 @@
         </InHeader>
         <div class="top">
             <div class="search">
-            <input type="text" placeholder="请输入影院名称或地址"
-            v-model="iptVal">
+            <input v-model="inputVal" type="text" placeholder="请输入影院名称或地址"/>
             </div>
             <button @click="handleSearch()">搜索</button>
 
@@ -44,7 +43,8 @@
 
 <script>
 import  InHeader from "@/common/inHeader"
-import  {getCinema} from "api/movie"
+import  {getCinema,searchCinema} from "api/movie"
+import {mapState} from "vuex"
 import http from "utils/http.js"
 export default {
     name:"movieTicket",
@@ -53,19 +53,26 @@ export default {
 
     },
   
-     created(){
-        this.handleGetCinema(this.page);
-        
+     activated(){
+        this.handleGetCinema(this.id,this.page);
+        this.page=1;
         
       },
-
+    computed:{
+          ...mapState({
+            id:state=>state.city.id
+        })
+          
+      },
     data(){
         return{
             cinemaList:[],
             flag:true,
             iptVal:"",
             valList:[],
-            page:1
+            page:1,
+            keyword:"",
+            inputVal:'',
         }
     },
     
@@ -76,8 +83,8 @@ export default {
         handleDetail(id){
             this.$router.push({name:"movieChoose",params:{id}})
         },
-        async handleGetCinema(page){
-            let data = await getCinema(page)
+        async handleGetCinema(id,page){
+            let data = await getCinema(id,page)
             if(data){
                 this.flag= false;
             
@@ -87,18 +94,14 @@ export default {
             this.cinemaList = [...this.cinemaList,...data.list];
             this.$refs.bscroll.scroll.finishPullUp()
             this.$refs.bscroll.scroll.refresh()
-                    if(this.page <= 16){
                         this.page++;
-                    }else{
-                        this.page = "";
-                }
-        }
+              
+        },
     },
     mounted(){
              this.$refs.bscroll.handlePullingUp(()=>{
-                 this.handleGetCinema(this.page);
-             })
-             
+                 this.handleGetCinema(this.id,this.page);
+             })  
       }
 }
 </script>
@@ -125,7 +128,7 @@ export default {
     }
     .top {
         position: absolute;
-        top:2rem;
+        top:1rem;
         left:0;
         width: 100%;
         z-index: 10;
@@ -167,6 +170,7 @@ export default {
         height:1.66rem;
         padding:.2rem .3rem;
         border-bottom: .02rem solid #eee;
+        font-size: .24rem;        
     }
     .main .shop h3{
         font-size: .32rem;

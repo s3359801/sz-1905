@@ -29,10 +29,12 @@
 <script>
 import http from "utils/http.js"
 import {getCinema} from "api/movie"
+import {mapState} from "vuex"
 export default {
     name:"movieBody",
-     created(){
-        this.handleGetCinema(this.page) 
+     activated(){
+        this.handleGetCinema(this.id,this.page)
+        this.page=1;
       },
 
     data(){
@@ -42,12 +44,18 @@ export default {
             
         }
     },
+     computed:{
+          ...mapState({
+            id:state=>state.city.id
+        })
+          
+      },
     methods:{
         handleDetail(id){
             this.$router.push({name:"movieChoose",params:{id}})
         },
-        async handleGetCinema(page){
-            let data = await getCinema(page)
+        async handleGetCinema(id,page){
+            let data = await getCinema(id,page)
             this.cinemaList = [this.cinemaList,...data.list];
             this.$refs.bscroll.scroll.finishPullUp()
                 this.$refs.bscroll.scroll.refresh()
@@ -61,7 +69,7 @@ export default {
     },
     mounted(){
         this.$refs.bscroll.handlePullingUp(()=>{
-            this.handleGetCinema(this.page)
+            this.handleGetCinema(this.id,this.page)
         })
         
     }
@@ -133,6 +141,7 @@ export default {
         height:1.66rem;
         padding:.2rem .3rem;
         border-bottom: .02rem solid #eee;
+        font-size: .24rem;
     }
     .mainBody .shop h3{
         font-size: .32rem;

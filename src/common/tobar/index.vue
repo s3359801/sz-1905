@@ -52,6 +52,7 @@ export default {
         left:0;
         z-index: 10;
         background: #fff;
+        font-size: .24rem;
 
     }
     #footer>ul {
