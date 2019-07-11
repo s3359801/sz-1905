@@ -7,8 +7,8 @@
             <button>搜索</button>
 
         </div>
-        <BScroll>
-        <div class="main">
+        <BScroll ref="bscroll">
+        <div class="mainBody">
             <v-touch class="shop"
             v-for="(item,index) in cinemaList"
             :key="index"
@@ -28,28 +28,42 @@
 
 <script>
 import http from "utils/http.js"
+import {getCinema} from "api/movie"
 export default {
     name:"movieBody",
-     async created(){
-        const getMovieNow = ()=>http("get","s/index?lat=&lon=")
-        let data = await getMovieNow()
-        this.cinemaList = data.cinemaList.list;
-        
+     created(){
+        this.handleGetCinema(this.page) 
       },
 
     data(){
         return{
-            cinemaList:[
-                
-              
-            ]
+            cinemaList:[],
+            page:1
             
         }
     },
     methods:{
         handleDetail(id){
             this.$router.push({name:"movieChoose",params:{id}})
+        },
+        async handleGetCinema(page){
+            let data = await getCinema(page)
+            this.cinemaList = [this.cinemaList,...data.list];
+            this.$refs.bscroll.scroll.finishPullUp()
+                this.$refs.bscroll.scroll.refresh()
+                if(this.page <= 16){
+                    this.page++;
+                }else{
+                    this.page = ""
+                }
+                
         }
+    },
+    mounted(){
+        this.$refs.bscroll.handlePullingUp(()=>{
+            this.handleGetCinema(this.page)
+        })
+        
     }
 }
 </script>
@@ -107,34 +121,35 @@ export default {
         border-radius: 5px;
         margin-top:.2rem;
     }
-    .main{
+    .mainBody{
          width:100%;
-        padding:0 .3rem;
-        padding-top:2rem;
+        position: absolute;
+        left:0;
+        top:0;
         overflow: auto;
     }
-    .main .shop{
+    .mainBody .shop{
         width:100%;
         height:1.66rem;
         padding:.2rem .3rem;
         border-bottom: .02rem solid #eee;
     }
-    .main .shop h3{
+    .mainBody .shop h3{
         font-size: .32rem;
         font-weight: 400;
         margin-bottom:.2rem;
         color:#333;
     }
-    .main .shop p{
+    .mainBody .shop p{
         color:#999;
     }
-    .main .shop .address{
+    .mainBody .shop .address{
         max-width: 5rem;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
     }
-    .main .shop span{
+    .mainBody .shop span{
         color:#c94c23;
     }
 </style>

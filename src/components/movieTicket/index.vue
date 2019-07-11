@@ -23,7 +23,7 @@
             <button @click="handleSearch()">搜索</button>
 
         </div>
-        <BScroll>
+        <BScroll ref="bscroll">
         <div class="main">
             <Loading v-if="flag"/>
             <v-touch class="shop"
@@ -44,7 +44,7 @@
 
 <script>
 import  InHeader from "@/common/inHeader"
-
+import  {getCinema} from "api/movie"
 import http from "utils/http.js"
 export default {
     name:"movieTicket",
@@ -53,16 +53,9 @@ export default {
 
     },
   
-     async created(){
-        const getMovieNow = ()=>http("get","s/index?lat=&lon=")
-        let data = await getMovieNow()
-        if(data){
-            this.flag= false;
+     created(){
+        this.handleGetCinema(this.page);
         
-        }else{
-            this.flag= true;
-        }
-        this.cinemaList = data.cinemaList.list;
         
       },
 
@@ -71,8 +64,8 @@ export default {
             cinemaList:[],
             flag:true,
             iptVal:"",
-            valList:[]
-            
+            valList:[],
+            page:1
         }
     },
     
@@ -82,8 +75,31 @@ export default {
         },
         handleDetail(id){
             this.$router.push({name:"movieChoose",params:{id}})
+        },
+        async handleGetCinema(page){
+            let data = await getCinema(page)
+            if(data){
+                this.flag= false;
+            
+            }else{
+                this.flag= true;
+            }
+            this.cinemaList = [...this.cinemaList,...data.list];
+            this.$refs.bscroll.scroll.finishPullUp()
+            this.$refs.bscroll.scroll.refresh()
+                    if(this.page <= 16){
+                        this.page++;
+                    }else{
+                        this.page = "";
+                }
         }
-    }
+    },
+    mounted(){
+             this.$refs.bscroll.handlePullingUp(()=>{
+                 this.handleGetCinema(this.page);
+             })
+             
+      }
 }
 </script>
 
@@ -109,7 +125,7 @@ export default {
     }
     .top {
         position: absolute;
-        top:1rem;
+        top:2rem;
         left:0;
         width: 100%;
         z-index: 10;
