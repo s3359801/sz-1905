@@ -125,7 +125,7 @@ export default {
     }
     .top {
         position: absolute;
-        top:2rem;
+        top:1rem;
         left:0;
         width: 100%;
         z-index: 10;
