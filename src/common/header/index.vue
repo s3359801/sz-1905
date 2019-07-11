@@ -83,6 +83,9 @@ export default {
   left:0;
   z-index: 10;
 }
+#header i {
+  font-size: .28rem;
+}
 #header > ul {
   display: flex;
   width: 50%;

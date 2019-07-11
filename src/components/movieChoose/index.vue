@@ -98,7 +98,7 @@ export default {
   components: {
     InHeader
   },
-  async created() {
+  async activated() {
     const movieChoose = () =>
       http("get", "s/cinemaDetail?", { id: this.$route.params.id }, "&idDK=0");
     let data = await movieChoose();
@@ -106,12 +106,8 @@ export default {
     this.movieList = data.movieList;
     var obj = data.movieList; //定义对象（data为获取到的对象，在这里定义）
     var arr = Object.values(obj); //对象转化为数组
-    console.log(this.movieList[0].planList);
-    console.log(data);
-    console.log(this.movieList);
     this.plan = this.movieList[0].planList;
-    console.log(this.plan);
-    console.log(this.session);
+
   },
   data() {
     return {
