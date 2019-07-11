@@ -81,6 +81,7 @@ export default {
   position: fixed;
   top:0;
   left:0;
+  z-index: 10;
 }
 #header > ul {
   display: flex;
@@ -115,12 +116,9 @@ export default {
 
 #main {
   width: 100%;
-  padding: 0 0.3rem;
-  position: absolute;
-  top:4.18rem;
-  left:0;
-  bottom: 1rem;
+  padding: 4.18rem .3rem 0 .3rem;
   overflow-y:auto;
+  height:12.32rem;
 }
 
 

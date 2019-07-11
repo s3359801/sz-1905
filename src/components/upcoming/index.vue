@@ -1,7 +1,10 @@
 <template>
-    <BScroll>
+    <BScroll ref="bscroll">
       <div>
           <Loading v-if="flag"/>
+          <div class="loading">
+            <i class="fa fa-circle-o-notch fa-spin" v-if="scrollLoading"></i>
+        </div>
         <v-touch class="movie" 
         v-for="(item,index) in movieList" 
         :key="index"
@@ -41,13 +44,22 @@ export default {
       data(){
           return{
               movieList:[],
-              flag:true
+              flag:true,
+              scrollLoading:false
           }
       },
       methods:{
           handleDetail(id){
               this.$router.push({name:"movieComing",params:{id}})
           }
+      },
+      mounted(){
+             this.$refs.bscroll.handleScrollStart(()=>{
+                this.scrollLoading = true;
+            });
+             this.$refs.bscroll.handleScrollEnd(()=>{
+                 this.scrollLoading = false;
+             })
       }
     
    
@@ -105,4 +117,12 @@ export default {
     .time{
         float: right;
     }
+    .loading{
+        text-align:center;
+    }
+    .loading .fa {
+        font-size: .6rem;
+        color: #C94C23;
+    }
+
 </style>

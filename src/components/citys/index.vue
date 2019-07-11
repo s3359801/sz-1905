@@ -1,4 +1,5 @@
 <template>
+    
   <div class="citys" ref="scroll">
     <InHeader title="城市列表">
       <template v-slot:header="props">
@@ -22,6 +23,7 @@
         </li>
       </ul>
     </div>
+    <BScroll>
     <div class="main" ref="domTop"> 
         <div class="citySearch" v-for="(item,index) in AList" :key="index">
           <div class="cs_top">
@@ -32,15 +34,18 @@
               <span>{{itm.name}}</span>
             </li>
           </div>
-        </div>
+        </div>        
     </div>
+    </BScroll>
     </div>
       <div class="chooseList">
         <li v-for="(item,index) in AList" :key="index">
           <span @click="handleMove(index)">{{item.group_id}}</span>
         </li>
       </div>
+       
   </div>
+    
 </template>
 
 <script scoped>
@@ -92,18 +97,16 @@ export default {
     },
     handleMove(i) {
       let mainDom = this.$refs.domTop.querySelectorAll(".citySearch");
-      console.log(mainDom);
       
       let Mtop = mainDom[i].offsetTop;
-      console.log(this.$refs.scroll.scrollTop );
       
-      this.$refs.scroll.scrollTop = Mtop-120;
+      this.$refs.scroll.scrollTop = Mtop-300;
     }
   }
 };
 </script>
 
-<style>
+<style scoped>
 
 .citys {
   width: 100%;
@@ -117,6 +120,7 @@ export default {
   height: 1rem;
   background: #fff;
   width: 100%;
+  z-index: 10;
 }
 .citys .top ul {
   width: 100%;
@@ -140,7 +144,6 @@ export default {
   padding-left: 0.3rem;
   font-size: 0.24rem;
   overflow: auto;
-  height:100%;
 }
 .citys .main .citySearch .cs_top {
   color: #c94c23;
