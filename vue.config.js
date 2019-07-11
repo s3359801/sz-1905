@@ -1,6 +1,7 @@
 const path = require("path");
 
 module.exports = {
+    // publicPath: "txpc",
     devServer:{
         open:true,
         proxy:{
